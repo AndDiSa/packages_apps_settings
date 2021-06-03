@@ -137,7 +137,7 @@ public class BluetoothPermissionActivity extends AlertActivity implements
         }
         p.mPositiveButtonText = getString(R.string.yes);
         p.mPositiveButtonListener = this;
-        p.mNegativeButtonText = getString(R.string.no);
+        p.mNegativeButtonText = getString(R.string.request_manage_bluetooth_permission_dont_allow);
         p.mNegativeButtonListener = this;
         mOkButton = mAlert.getButton(DialogInterface.BUTTON_POSITIVE);
         setupAlert();
@@ -154,7 +154,8 @@ public class BluetoothPermissionActivity extends AlertActivity implements
         String mRemoteName = mDevice != null ? mDevice.getAliasName() : null;
 
         if (mRemoteName == null) mRemoteName = getString(R.string.unknown);
-        return mRemoteName;
+        String nameNoNewline = mRemoteName.replaceAll("[\\t\\n\\r]+", " ");
+        return nameNoNewline;
     }
 
     // TODO(edjee): createConnectionDialogView, createPhonebookDialogView and createMapDialogView
